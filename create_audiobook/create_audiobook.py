@@ -26,3 +26,4 @@ if __name__ == '__main__':
                 for i in range(1,len(arg)):
                     count = count + 1
                     mp3_creat.create_track(arg[0], int(arg[i]), count)
+    print str(mp3_creat.calc_str_to_ms(mp3_creat.episod_list[1].track_list[2].start_time))

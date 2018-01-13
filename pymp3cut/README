@@ -1,0 +1,57 @@
+# $Id: README,v 1.5 2002/08/21 21:48:44 jalet Exp $
+pymp3cut v0.27 - August 21st, 2002
+
+(c) 2001-2002 Jerome Alet <alet@librelogiciel.com>
+You're welcome to redistribute this software under the
+terms of the GNU General Public Licence version 2.0
+or, at your option, any higher version.
+
+You can read the complete GNU GPL in the file COPYING
+which should come along with this software, or visit
+the Free Software Foundation's WEB site http://www.fsf.org
+
+============================================================
+
+INSTALL:
+========
+
+1 - If you don't have Distutils installed (e.g. python version <= 1.5.2)
+then first download it from :
+
+        http://www.python.org/sigs/distutils-sig/
+
+then follow the installation instructions for Distutils and install
+it on your system.
+
+2 - Download the latest PyMP3Cut version from :
+
+        http://www.librelogiciel.com/software/
+
+3 - Extract it :
+
+        gzip -d pymp3cut-x.xx.tar.gz | tar -xf -
+
+        where x.xx is pymp3cut's latest version number.
+
+4 - Install it :
+
+  Go to pymp3cut's directory:
+
+        cd pymp3cut-x.xx
+
+  Just type:
+
+        python setup.py install
+
+  You may need to be logged in with sufficient privileges (e.g. root)
+
+  This will generally install pymp3cut and pmpcmp3 in /usr/local/bin or
+  an equivalent path depending on your system, and the modules
+  in /usr/local/lib/pythonX.XX/site-packages/
+
+To learn how to use it, just launch pymp3cut with --help
+as its first argument.
+
+============================================================
+
+Please e-mail bugs to: alet@librelogiciel.com (Jerome Alet)

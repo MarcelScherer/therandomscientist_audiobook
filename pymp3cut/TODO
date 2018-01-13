@@ -1,0 +1,11 @@
+# pymp3cut (c) 2002 Jerome Alet - Conseil Internet & Logiciels Libres
+#
+# $Id: TODO,v 1.2 2002/04/25 19:30:53 jalet Exp $
+#
+
+pymp3cut TODO (in no particular order) :
+======================================
+
+        - Make the postprocessing command mechanism work.
+        
+Jerome Alet - <alet@librelogiciel.com>

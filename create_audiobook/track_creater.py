@@ -6,11 +6,7 @@ Created on 12.01.2018
 import feed_pars
 import os
 import urllib
-import sys
-sys.path[0:0] = '../pydub' # puts the /foo directory at the start of your path
-import pydub
-pydub.AudioSegment.converter = r"..\\ffmpeg\\bin\\ffmpeg.exe"
-from pydub import AudioSegment
+
 
 class track_create(object):
     
@@ -38,9 +34,11 @@ class track_create(object):
                 if(os.path.isfile('../book/' + file) ):
                     print file + " is there"
                 else:
-                    sound = AudioSegment.from_file(folder + temp_file , "mp3" )    
-                    track = sound[self.episod_list[i].track_list[num-1].start_time:self.episod_list[i].track_list[num].start_time]
-                    track.export('../book/' + file, format="mp3")
-                    print "create " + file + " ..."
+                    print "file cut has to be programm .."
+
+                    
+    def calc_str_to_ms(self, time_string):
+        arg = time_string.split(":")
+        return int(arg[0])*3600 +int(arg[1])*60 + int(float(arg[2]))
 
         

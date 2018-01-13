@@ -1,0 +1,5 @@
+#!/usr/bin/env python
+
+import pmpcmp3,sys,os
+
+pmpcmp3.main(sys.argv, sys.stdout, os.environ)
