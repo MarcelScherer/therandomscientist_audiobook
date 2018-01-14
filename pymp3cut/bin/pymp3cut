@@ -1,5 +1,0 @@
-#!/usr/bin/env python
-
-import pymp3cut,sys
-
-pymp3cut.mp3cut(sys.argv)

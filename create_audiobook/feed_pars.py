@@ -44,10 +44,9 @@ class feed_parser(object):
             elif (item_step == 3 and line.find('duration>') > 0):    
                 endtime = line[(line.find('duration>')+len('duration>')):(line.find('</itunes:duration>'))]
                 item_step = 4;
-                print endtime
             elif ((item_step == 4 or item_step == 5) and line.find('<psc:chapter start="') > 0):
                 timming = (line[(line.find('<psc:chapter start="')+len('<psc:chapter start="')):(line.find('" title="'))])
-                track_title = (line[(line.find('" title="')+len('" title=""')):(line.find('"/>'))])
+                track_title = (line[(line.find('" title="')+len('" title="')):(line.find('"/>'))])
                 if(track_title == ""):
                     track_title = title;
                 track_list.append(track(timming, track_title))

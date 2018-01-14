@@ -8,6 +8,7 @@ import os
 from feed_pars import feed_parser
 from feed_pars import episode
 from track_creater import track_create
+import shutil
 
 #--------------------------------------------------
 FEED = "http://therandomscientist.de/feed/mp3/"
@@ -26,4 +27,4 @@ if __name__ == '__main__':
                 for i in range(1,len(arg)):
                     count = count + 1
                     mp3_creat.create_track(arg[0], int(arg[i]), count)
-    print str(mp3_creat.calc_str_to_ms(mp3_creat.episod_list[1].track_list[2].start_time))
+    shutil.rmtree('../temp', ignore_errors=True)
