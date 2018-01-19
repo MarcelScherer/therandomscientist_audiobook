@@ -17,14 +17,14 @@ class track_create(object):
         for i in range(0, len(self.episod_list)):
             if (self.episod_list[i].title == title):
                 folder = '../temp/';
-                temp_file = title.replace("/","-") + '_temp.mp3';
+                temp_file = title.replace("/","") + '_temp.mp3';
                 file =str("%0.3o"% trac_num) + "." + title + " - " + self.episod_list[i].track_list[num-1].track_title + '.mp3';
                 if not os.path.exists(folder):
                     os.makedirs(folder)
                 if(os.path.isfile(folder + temp_file) ):
                     print "temp file is there ..."
-                elif(os.path.isfile("../book/"+str(trac_num)+ ' ' +self.episod_list[i].track_list[num-1].track_title.replace("/","-").replace("&#xE4;","ae") + ".mp3") ):
-                    print "temp file is there ..."
+                elif(os.path.isfile("../book/"+str("%0.3o"% trac_num)+ ' ' +self.episod_list[i].track_list[num-1].track_title.replace("/","").replace("&#xE4;","ae") + ".mp3") ):   
+                    print "file is there ..."
                 else:
                     mp3file = urllib.urlopen(self.episod_list[i].src.replace("https", "http"))
                     print "download ..."
@@ -36,7 +36,7 @@ class track_create(object):
                 if(os.path.isfile('../book/' + file) ):
                     print file + " is there"
                 else:
-                    self.cut_mp3(self.episod_list[i], num, trac_num)
+                    return self.cut_mp3(self.episod_list[i], num, trac_num)
 
                     
     def calc_str_to_ms(self, time_string):
@@ -44,8 +44,8 @@ class track_create(object):
         return int(arg[0])*3600 +int(arg[1])*60 + int(float(arg[2]))
     
     def cut_mp3(self, episode, number, trac_num):
-        input_file = "../temp/" + episode.title.replace("/","-") + "_temp.mp3"
-        output_file = "../book/"+str(trac_num)+ ' ' +episode.track_list[number-1].track_title.replace("/","-") + ".mp3"
+        input_file = "../temp/" + episode.title.replace("/","") + "_temp.mp3"
+        output_file = "../book/"+str("%0.3o"% trac_num)+ ' ' +episode.track_list[number-1].track_title.replace("/","") + ".mp3"
         if(os.path.isfile(output_file.replace("&#xE4;","ae"))):
             print episode.track_list[number-1].track_title  + " file is there ..."
         else:
@@ -75,6 +75,7 @@ class track_create(object):
             in_file.close()
             out_file.close()
             print output_file + " created ...  "
+        return output_file
         
         
         
