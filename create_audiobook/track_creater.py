@@ -59,7 +59,7 @@ class track_create(object):
             else:
                 cut_1 = episode.size / self.calc_str_to_ms(episode.end_time) * self.calc_str_to_ms(episode.track_list[number-1].start_time)
                 cut_2 = episode.size / self.calc_str_to_ms(episode.end_time) * self.calc_str_to_ms(episode.end_time)
-            
+            cut_2 = cut_2 - cut_1
             buffersize = 1000
             while (buffersize < cut_1):
                 buffer = in_file.read(buffersize) 
@@ -67,7 +67,7 @@ class track_create(object):
             buffer = in_file.read(cut_1) 
             del buffer
             
-            while (buffersize < cut_2):
+            while (buffersize < (cut_2)):
                 out_file.write(in_file.read(buffersize)) 
                 cut_2 = cut_2 - 1000
             out_file.write(in_file.read(cut_2)) 
