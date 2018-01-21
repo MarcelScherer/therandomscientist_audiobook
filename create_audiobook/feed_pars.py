@@ -58,6 +58,11 @@ class feed_parser(object):
                 track_list = []
                 title = ""
                 src   = ""
+            elif (line.find("</item>") > 0):
+                item_step = 0
+                track_list = []
+                title = ""
+                src   = ""
         self.epsiod_list.reverse()
 
         

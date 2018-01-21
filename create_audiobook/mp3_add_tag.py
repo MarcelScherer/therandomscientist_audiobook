@@ -32,16 +32,12 @@ def add_mp3_tag(path_to_mp3):
         
         tags.save(folder + trac + " " + file)
         
+        #----------
+        imagedata = open("../TheRandomScientist_small_white.jpg", 'rb').read()
+
+        id3 = ID3(folder + trac + " " + file)
+        id3.add(APIC(3, 'image/jpeg', 3, 'Front cover', imagedata))
+        id3.add(TIT2(encoding=3, text=trac))
         
-        audio = MP3(folder + trac + " " + file, ID3=ID3)    
-        audio.tags.add(
-            APIC(
-                encoding=3, # 3 is for utf-8
-                mime='image/png', # image/jpeg or image/png
-                type=3, # 3 is for the cover image
-                desc=u'Cover',
-                data=open('../TheRandomScientist_small_white.jpg').read()
-            )
-        )
-        audio.save(folder + trac + " " + file)
+        id3.save(v2_version=3)
         
