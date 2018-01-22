@@ -24,7 +24,7 @@ class track_create(object):
                     os.makedirs(folder)
                 if(os.path.isfile(folder + temp_file) ):
                     print "temp file is there ..."
-                elif(os.path.isfile("../book/"+str("%0.3d"% trac_num)+ ' ' +self.episod_list[i].track_list[num-1].track_title.replace("/","").replace("&#xE4;","ae") + ".mp3") ):   
+                elif(os.path.isfile("../book/"+str("%0.3d"% trac_num)+ ' ' +self.episod_list[i].track_list[num-1].track_title.replace("/","").replace("&#xE4;","ae").replace("&#xF6;","oe") + ".mp3") ):   
                     print "file is there ..."
                 else:
                     mp3file = urllib.urlopen(self.episod_list[i].src.replace("https", "http"))

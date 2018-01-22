@@ -25,7 +25,7 @@ def add_mp3_tag(path_to_mp3):
         tags["TALB"] = TALB(encoding=3, text=u'The Random Scientist Audiobook')
         tags["TPE2"] = TPE2(encoding=3, text=u'The Random Scientist Audiobook')
         tags["COMM"] = COMM(encoding=3, lang=u'eng', desc='desc', text=u'mutagen comment')
-        tags["TPE1"] = TPE1(encoding=3, text=u'Dr. Stefan Dillinger')
+        tags["TPE1"] = TPE1(encoding=3, text=u'Dr. Stefan Dillinger u. Dr. Dominic Helm')
         tags["TCOM"] = TCOM(encoding=3, text=u'mutagen Composer')
         tags["TDRC"] = TDRC(encoding=3, text=u'2017')
         tags["TRCK"] = TRCK(encoding=3, text=unicode(trac))
@@ -37,7 +37,6 @@ def add_mp3_tag(path_to_mp3):
 
         id3 = ID3(folder + trac + " " + file)
         id3.add(APIC(3, 'image/jpeg', 3, 'Front cover', imagedata))
-        id3.add(TIT2(encoding=3, text=trac))
         
         id3.save(v2_version=3)
         

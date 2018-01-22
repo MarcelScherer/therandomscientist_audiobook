@@ -12,6 +12,7 @@ import shutil
 from mp3_add_tag import add_mp3_tag
 from mp3_fade import mp3_fade_in_out
 
+
 #--------------------------------------------------
 FEED = "http://therandomscientist.de/feed/mp3/"
 #--------------------------------------------------
@@ -20,7 +21,7 @@ if __name__ == '__main__':
     shutil.rmtree('../temp', ignore_errors=True)
     count = 0
     mp3_list = []
- 
+  
     feed_ojt    = feed_parser(FEED)
     mp3_creat   = track_create(feed_ojt.epsiod_list)
     del feed_ojt
@@ -32,7 +33,9 @@ if __name__ == '__main__':
                     count = count + 1
                     mp3_list.append(mp3_creat.create_track(arg[0], int(arg[i]), count))
     shutil.rmtree('../temp', ignore_errors=True)
-    
+     
     for i in range(1,len(mp3_list)+1):
         mp3_fade_in_out(mp3_list[i-1])
         add_mp3_tag((mp3_list[i-1]))
+
+
