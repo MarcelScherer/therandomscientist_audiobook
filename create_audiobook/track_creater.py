@@ -48,11 +48,11 @@ class track_create(object):
         createt_file = None;
         input_file = "../temp/" + episode.title.replace("/","") + "_temp.mp3"
         output_file = "../book/"+str("%0.3d"% trac_num)+ ' ' +episode.track_list[number-1].track_title.replace("/","") + ".mp3"
-        if(os.path.isfile(output_file.replace("&#xE4;","ae"))):
+        if(os.path.isfile(output_file.replace("&#xE4;","ae").replace("&#xF6;","oe"))):
             print episode.track_list[number-1].track_title  + " file is there ..."
         else:
             in_file = open(input_file, "rb")
-            out_file = open(output_file.replace("&#xE4;","ae"), "wb")
+            out_file = open(output_file.replace("&#xE4;","ae").replace("&#xF6;","oe"), "wb")
             createt_file = output_file;
             cut_1 = 0
             cut_2 = 0
@@ -63,6 +63,7 @@ class track_create(object):
                 cut_1 = episode.size / self.calc_str_to_ms(episode.end_time) * self.calc_str_to_ms(episode.track_list[number-1].start_time)
                 cut_2 = episode.size / self.calc_str_to_ms(episode.end_time) * self.calc_str_to_ms(episode.end_time)
             cut_2 = cut_2 - cut_1
+            #print episode.track_list[number-1].start_time + " - " + episode.track_list[number].start_time + " - " + str(cut_2)
             buffersize = 1000
             while (buffersize < cut_1):
                 buffer = in_file.read(buffersize) 

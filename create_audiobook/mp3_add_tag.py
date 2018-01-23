@@ -13,7 +13,7 @@ def add_mp3_tag(path_to_mp3):
     if(path_to_mp3 != None):
         folder = "../book/"
         trac = path_to_mp3[path_to_mp3.find(folder)+len(folder):path_to_mp3.find(folder)+len(folder)+3]
-        file = path_to_mp3[path_to_mp3.find(folder)+len(folder)+4:].replace("/","").replace("&#xE4;","ae")
+        file = path_to_mp3[path_to_mp3.find(folder)+len(folder)+4:].replace("/","").replace("&#xE4;","ae").replace("&#xF6;","oe")
         # create ID3 tag if not present
         try: 
             tags = ID3(folder + trac + " " + file)
@@ -28,7 +28,7 @@ def add_mp3_tag(path_to_mp3):
         tags["TPE1"] = TPE1(encoding=3, text=u'Dr. Stefan Dillinger u. Dr. Dominic Helm')
         tags["TCOM"] = TCOM(encoding=3, text=u'mutagen Composer')
         tags["TDRC"] = TDRC(encoding=3, text=u'2017')
-        tags["TRCK"] = TRCK(encoding=3, text=unicode(trac))
+        tags["TRCK"] = TRCK(encoding=3, text=unicode(str(int(trac))))
         
         tags.save(folder + trac + " " + file)
         
@@ -37,6 +37,7 @@ def add_mp3_tag(path_to_mp3):
 
         id3 = ID3(folder + trac + " " + file)
         id3.add(APIC(3, 'image/jpeg', 3, 'Front cover', imagedata))
+        #id3.add(TIT2(encoding=3, text=unicode(file.replace(".mp3","")))
         
         id3.save(v2_version=3)
         
