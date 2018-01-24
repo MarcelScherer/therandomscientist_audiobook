@@ -7,6 +7,7 @@ from mutagen.id3 import ID3NoHeaderError
 from mutagen.id3 import ID3, TIT2, TALB, TPE1, TPE2, COMM, USLT, TCOM, TCON, TDRC, TRCK, APIC, error
 from mutagen.mp3 import MP3
 
+# function add cover image and mp3 tags to the mp3 track
 def add_mp3_tag(path_to_mp3):
 
     # Create MP3File instance.
@@ -21,6 +22,7 @@ def add_mp3_tag(path_to_mp3):
             print "Adding ID3 header;",
             tags = ID3()
         
+        # add all mp3 tags to the mp3 track
         tags["TIT2"] = TIT2(encoding=3, text=unicode(file.replace(".mp3","")))
         tags["TALB"] = TALB(encoding=3, text=u'The Random Scientist Audiobook')
         tags["TPE2"] = TPE2(encoding=3, text=u'The Random Scientist Audiobook')
@@ -32,7 +34,7 @@ def add_mp3_tag(path_to_mp3):
         
         tags.save(folder + trac + " " + file)
         
-        #----------
+        # add mp3 cover to the mp3 track
         imagedata = open("../TheRandomScientist_small_white.jpg", 'rb').read()
 
         id3 = ID3(folder + trac + " " + file)

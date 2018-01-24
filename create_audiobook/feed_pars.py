@@ -23,11 +23,13 @@ class track(object):
 
 # feed parser
 class feed_parser(object):
+    # the init function past the feed and create a list of all episodes in the feed
     def __init__(self, rss_info):
         self.epsiod_list = []  # list of all found episode
         self.count = 0;
         
         item_step = 0;
+        # download mp3 feed xml
         rss = urllib.urlopen(rss_info)           
         print "parse feed ..."
         track_list = []
@@ -35,20 +37,26 @@ class feed_parser(object):
         src   = ""
         size = 0
         endtime = ""
+        # look for episodes in the xml file
         for line in rss:
-            if (item_step == 0 and line.find("<item>") > 0):     # search for begin 
+            # find the begin of the episode
+            if (item_step == 0 and line.find("<item>") > 0):     
                 item_step = 1;
+            # find the title of the episode
             elif (item_step == 1 and line.find("</title>") > 0):
-                title = line[line.find("; ")+2:line.find("</title>")]  # search for title
+                title = line[line.find("; ")+2:line.find("</title>")] 
                 title = self.fix_string(title)
                 item_step = 2;
+            # finde the link for download the mp3 file
             elif (item_step == 2 and line.find('enclosure url') > 0):  # search for url sorce
                 src = line[(line.find('<enclosure url="')+len('<enclosure url="')):(line.find('" length="'))]
                 size = line[(line.find('length="')+len('length="')):(line.find('" type="'))]
                 item_step = 3
-            elif (item_step == 3 and line.find('duration>') > 0):     # search for episode end time
+            # find the length (time) of the mp3 file
+            elif (item_step == 3 and line.find('duration>') > 0):    
                 endtime = line[(line.find('duration>')+len('duration>')):(line.find('</itunes:duration>'))]
                 item_step = 4;
+            # find title and start time of all chapter marks
             elif ((item_step == 4 or item_step == 5) and line.find('<psc:chapter start="') > 0):    # search for all tracks
                 timming = (line[(line.find('<psc:chapter start="')+len('<psc:chapter start="')):(line.find('" title="'))])
                 track_title = (line[(line.find('" title="')+len('" title="')):(line.find('"/>'))])
@@ -56,20 +64,25 @@ class feed_parser(object):
                     track_title = title;
                 track_list.append(track(timming, track_title))
                 item_step = 5;
-            elif (item_step == 5 and  line.find("</item>") > 0):   # find the end of one episode
+            # find the end of one episode
+            elif (item_step == 5 and  line.find("</item>") > 0):   
                 item_step = 0
+                # create a episode object and add to epsiode list
                 self.epsiod_list.append(episode(title, src, track_list, endtime, size))
                 self.count = self.count + 1;
                 track_list = []
                 title = ""
                 src   = ""
+            # find the end but not all values of the episode found
             elif (line.find("</item>") > 0):
                 item_step = 0
                 track_list = []
                 title = ""
                 src   = ""
+        # reverse list that the fist episode is the oldest
         self.epsiod_list.reverse()
         
+    # function change "ä" to "ae" and "ö" to "oe" in a assci string
     def fix_string(self, enco):
         a=list(enco)
         for i in range(0,len(a)-1):
