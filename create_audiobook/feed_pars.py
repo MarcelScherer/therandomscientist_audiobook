@@ -82,7 +82,7 @@ class feed_parser(object):
         # reverse list that the fist episode is the oldest
         self.epsiod_list.reverse()
         
-    # function change "ä" to "ae" and "ö" to "oe" in a assci string
+    # function change "a" to "ae" and "o" to "oe" in a assci string
     def fix_string(self, enco):
         a=list(enco)
         for i in range(0,len(a)-1):
